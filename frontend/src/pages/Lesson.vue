@@ -791,7 +791,7 @@ const enrollment = createResource({
 	},
 })
 
-const enrollStudent = () => {
+/* const enrollStudent = () => {
 	enrollment.submit(
 		{},
 		{
@@ -801,7 +801,16 @@ const enrollStudent = () => {
 		}
 	)
 }
+*/
 
+const enrollStudent = () => {
+	// Redirect to billing page instead of direct enrollment
+	const courseName = props.courseName;
+	window.location.href = `/lms/billing/course/${courseName}`;
+	
+	// Alternative using Frappe router if you prefer:
+	// frappe.set_route('lms/billing/course', courseName);
+}
 const toggleInlineMenu = async () => {
 	showInlineMenu.value = false
 	await nextTick()

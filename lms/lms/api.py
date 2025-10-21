@@ -1672,3 +1672,4 @@ def get_pwa_manifest():
 	}
 
 	return Response(json.dumps(manifest), status=200, content_type="application/manifest+json")
+
