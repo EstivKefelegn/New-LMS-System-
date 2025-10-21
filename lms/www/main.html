@@ -29,7 +29,6 @@
             <!-- Logo Section -->
             {% set website_settings = frappe.get_doc('Website Settings', 'Website Settings') %}
             <a href="/" class="flex items-center space-x-3">
-            <!-- <div class="flex items-center space-x-3"> -->
                 <div class="w-12 h-12 rounded-xl shadow-md flex items-center justify-center overflow-hidden">
                     <img 
                         src="{{ website_settings.app_logo }}" 
@@ -37,18 +36,17 @@
                         class="w-full h-full object-contain"
                     >
                 </div>
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-bold bg-gradient-to-r from-gray-800 to-blue-600 bg-clip-text text-transparent">
-                            {{ website_settings.app_name }}
-                        </span>
-                        <span class="text-xs text-gray-500 font-medium">Learning Platform</span>
-                    </div>
-                </a>  
-            <!-- </div> -->
-
+                <div class="flex flex-col">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-gray-800 to-blue-600 bg-clip-text text-transparent">
+                        {{ website_settings.app_name }}
+                    </span>
+                    <span class="text-xs text-gray-500 font-medium">Learning Platform</span>
+                </div>
+            </a>  
 
             <!-- Navigation Menu -->
             <nav class="hidden lg:flex items-center space-x-1">
+                <!-- Navigation Menu Items -->
                 {% for item in website_settings.top_bar_items %}
                     {% if item.label == "Courses" %}
                         <!-- Courses Dropdown Menu -->
@@ -90,9 +88,36 @@
                 {% endfor %}
             </nav>
 
-            <!-- User Actions -->
+            <!-- User Profile Section - Outside Navbar, Right Edge -->
             <div class="flex items-center space-x-3">
-                {% if frappe.session.user == "Guest" %}
+                {% if frappe.session.user != "Guest" %}
+                    {% set user_doc = frappe.get_doc("User", frappe.session.user) %}
+                    <div class="relative group">
+                        <div class="flex items-center space-x-3 cursor-pointer">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-base hover:bg-blue-700 transition-all duration-300">
+                                {{ user_doc.full_name[0] if user_doc.full_name else user_doc.name[0] }}
+                            </div>
+                        </div>
+                        
+                        <!-- User Dropdown Menu -->
+                        <div class="absolute right-0 hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 min-w-[180px] z-50">
+                            <div class="px-4 py-3 border-b border-gray-100">
+                                <p class="text-sm font-medium text-gray-900">
+                                    {{ user_doc.full_name if user_doc.full_name else user_doc.name }}
+                                </p>
+                                <p class="text-xs text-gray-500 mt-1">{{ user_doc.email }}</p>
+                            </div>
+                            <a href="/lms" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                My Courses
+                            </a>
+                            <div class="border-t border-gray-100">
+                                <a href="/logout" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
                     <!-- Sign In Button -->
                     <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2.5 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center">
                         <i class="fas fa-sign-in-alt mr-2"></i>
@@ -104,33 +129,6 @@
                         <i class="fas fa-user-plus mr-2"></i>
                         Register
                     </a>
-                {% else %}
-                    <!-- Logout Button -->
-                    <!-- Logout Button -->
-					<button id="logoutBtn" class="bg-red-500 text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-red-600 transition-all duration-300 shadow-sm flex items-center">
-						<i class="fas fa-sign-out-alt mr-2"></i>
-						Logout
-					</button>
-
-					<script>
-					document.getElementById('logoutBtn').addEventListener('click', function() {
-                        fetch("/?cmd=web_logout", {
-                            method: "GET",
-                            credentials: "same-origin"
-                        })
-                        .then(() => {
-                            window.location.href = "/"; // redirect after logout
-                        })
-                        .catch(err => {
-                            console.error("Logout failed:", err);
-                            alert("Logout failed. Try again.");
-                        });
-                    });
-
-					</script>
-
-
-
                 {% endif %}
 
                 <!-- Mobile Menu Button -->

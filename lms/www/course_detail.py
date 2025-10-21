@@ -16,6 +16,14 @@ def get_context(context):
         course = frappe.get_doc("LMS Course", course_name)
         context.course = course
         
+        # Check if user is enrolled - ADDED THIS SECTION
+        context.is_enrolled = False
+        if frappe.session.user != "Guest":
+            context.is_enrolled = frappe.db.exists("LMS Enrollment", {
+                "course": course_name,
+                "member": frappe.session.user
+            })
+        
         # Extract YouTube ID if video_link exists
         if course.video_link:
             context.youtube_id = extract_youtube_id(course.video_link)

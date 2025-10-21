@@ -167,94 +167,104 @@
 
     <!-- Right Column - Course Info & Enrollment -->
     <div class="lg:col-span-1">
-        <!-- Enrollment Card -->
-        <div class="bg-white rounded-lg shadow-lg border border-gray-200 sticky top-8">
-            <div class="p-6">
+    <!-- Enrollment Card -->
+    <div class="bg-white rounded-lg shadow-lg border border-gray-200 sticky top-8">
+        <div class="p-6">
+            {% if course.paid_course %}
+            <div class="text-center mb-4">
+                <span class="text-3xl font-bold text-gray-900">{{ course.course_price }} {{ course.currency }}</span>
+                {% if course.amount_usd %}
+                <p class="text-sm text-gray-600">Approx. ${{ course.amount_usd }} USD</p>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="text-center mb-4">
+                <span class="text-3xl font-bold text-green-600">Free</span>
+            </div>
+            {% endif %}
+
+            {% if is_enrolled %}
+            <!-- User is enrolled - Show Continue Learning -->
+            <button 
+                onclick="window.location.href='/lms/courses/{{ course.name }}'"
+                class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 mb-4">
+                Continue Learning
+            </button>
+            {% else %}
+            <!-- User is not enrolled - Show enrollment options -->
+            <button 
+                onclick="window.location.href='{% if course.paid_course %}/lms/billing/course/{{ course.name }}{% else %}/lms/courses/{{ course.name }}{% endif %}'"
+                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mb-4">
                 {% if course.paid_course %}
-                <div class="text-center mb-4">
-                    <span class="text-3xl font-bold text-gray-900">{{ course.course_price }} {{ course.currency }}</span>
-                    {% if course.amount_usd %}
-                    <p class="text-sm text-gray-600">Approx. ${{ course.amount_usd }} USD</p>
-                    {% endif %}
-                </div>
+                Enroll Now - {{ course.course_price }} {{ course.currency }}
                 {% else %}
-                <div class="text-center mb-4">
-                    <span class="text-3xl font-bold text-green-600">Free</span>
+                Start for Free
+                {% endif %}
+            </button>
+            {% endif %}
+
+            <div class="text-center text-sm text-gray-600 mb-4">
+                {% if course.enable_certification %}
+                <p>📜 Certificate included</p>
+                {% endif %}
+                <p>🕒 Lifetime access</p>
+            </div>
+
+            <!-- Course Features -->
+            <div class="space-y-3">
+                <div class="flex items-center text-sm text-gray-700">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>{{ lessons_count }} lessons</span>
+                </div>
+                {% if chapters and chapters|length > 0 %}
+                <div class="flex items-center text-sm text-gray-700">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>{{ chapters|length }} chapters</span>
                 </div>
                 {% endif %}
-
-               <button 
-    onclick="window.location.href='{% if course.paid_course %}/lms/billing/course/{{ course.name }}{% else %}/lms/courses/{{ course.name }}{% endif %}'"
-    class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mb-4">
-    {% if course.paid_course %}
-    Enroll Now - {{ course.course_price }} {{ course.currency }}
-    {% else %}
-    Start for Free
-    {% endif %}
-</button>
-
-                <div class="text-center text-sm text-gray-600 mb-4">
-                    {% if course.enable_certification %}
-                    <p>📜 Certificate included</p>
-                    {% endif %}
-                    <p>🕒 Lifetime access</p>
+                {% if course.enable_certification %}
+                <div class="flex items-center text-sm text-gray-700">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>Certificate of completion</span>
                 </div>
-
-                <!-- Course Features -->
-                <div class="space-y-3">
-                    <div class="flex items-center text-sm text-gray-700">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>{{ lessons_count }} lessons</span>
-                    </div>
-                    {% if chapters and chapters|length > 0 %}
-                    <div class="flex items-center text-sm text-gray-700">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>{{ chapters|length }} chapters</span>
-                    </div>
-                    {% endif %}
-                    {% if course.enable_certification %}
-                    <div class="flex items-center text-sm text-gray-700">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>Certificate of completion</span>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <!-- Instructors Section -->
-        {% if instructors and instructors|length > 0 %}
-        <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Instructors</h3>
-            <div class="space-y-4">
-                {% for instructor in instructors %}
-                <div class="flex items-center">
-                    {% if instructor.user_image %}
-                    <img src="{{ instructor.user_image }}" alt="{{ instructor.full_name }}" class="w-12 h-12 rounded-full mr-3">
-                    {% else %}
-                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
-                        <span class="text-gray-600 text-sm font-semibold">{{ instructor.full_name[0] if instructor.full_name else 'I' }}</span>
-                    </div>
-                    {% endif %}
-                    <div>
-                        <h4 class="font-semibold text-gray-900">{{ instructor.full_name }}</h4>
-                        <p class="text-sm text-gray-600">{{ instructor.headline }}</p>
-                    </div>
-                </div>
-                {% if instructor.bio %}
-                <p class="text-sm text-gray-700">{{ instructor.bio }}</p>
                 {% endif %}
-                {% endfor %}
             </div>
         </div>
-        {% endif %}
     </div>
+
+    <!-- Instructors Section -->
+    {% if instructors and instructors|length > 0 %}
+    <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-bold text-gray-900 mb-4">Instructors</h3>
+        <div class="space-y-4">
+            {% for instructor in instructors %}
+            <div class="flex items-center">
+                {% if instructor.user_image %}
+                <img src="{{ instructor.user_image }}" alt="{{ instructor.full_name }}" class="w-12 h-12 rounded-full mr-3">
+                {% else %}
+                <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                    <span class="text-gray-600 text-sm font-semibold">{{ instructor.full_name[0] if instructor.full_name else 'I' }}</span>
+                </div>
+                {% endif %}
+                <div>
+                    <h4 class="font-semibold text-gray-900">{{ instructor.full_name }}</h4>
+                    <p class="text-sm text-gray-600">{{ instructor.headline }}</p>
+                </div>
+            </div>
+            {% if instructor.bio %}
+            <p class="text-sm text-gray-700">{{ instructor.bio }}</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
 </div>
 
 {% endblock %}

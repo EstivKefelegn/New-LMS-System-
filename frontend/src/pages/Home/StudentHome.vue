@@ -9,7 +9,9 @@
 							: __('Our Popular Courses')
 					}}
 				</span>
+				<!-- Only show "See all" button for Administrators -->
 				<router-link
+					v-if="isAdministrator"
 					:to="{
 						name: 'Courses',
 					}"
@@ -135,7 +137,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
 import { createResource, Tooltip } from 'frappe-ui'
 import { formatTime } from '@/utils'
 import {
@@ -152,6 +154,11 @@ import UpcomingEvaluations from '@/components/UpcomingEvaluations.vue'
 
 const dayjs = inject<any>('$dayjs')
 const user = inject<any>('$user')
+
+// Check if user is Administrator
+const isAdministrator = computed(() => {
+	return user.data?.roles?.includes('Administrator') || false
+})
 
 const props = defineProps<{
 	myLiveClasses: any

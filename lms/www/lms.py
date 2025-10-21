@@ -20,6 +20,28 @@ def get_context():
     context.title = title
     context.favicon = favicon
 
+    # --- RESTRICT LMS/COURSES FOR NON-ADMINISTRATORS ---
+    # Only restrict the main courses listing page
+    # Allow individual course pages and other sub-routes
+    if app_path:
+        # Main courses listing page: /lms/courses
+        is_main_courses_page = (
+            app_path.strip() == "courses" or 
+            app_path.strip() == "courses/" or
+            app_path == "courses"
+        )
+        
+        if is_main_courses_page:
+            # Check if user is logged in
+            if frappe.session.user == "Guest":
+                frappe.local.flags.redirect_location = "/login"
+                raise frappe.Redirect
+            
+            # Check if user has Administrator role
+            user_roles = frappe.get_roles(frappe.session.user)
+            if "Administrator" not in user_roles:
+                frappe.throw(_("Administrator access required to view all courses"), frappe.PermissionError)
+
     # ✅ Add LMS Categories for dropdown
     try:
         categories = frappe.get_all(
@@ -35,7 +57,6 @@ def get_context():
 
     capture("active_site", "lms")
     return context
-
 
 def get_boot():
     return frappe._dict(
