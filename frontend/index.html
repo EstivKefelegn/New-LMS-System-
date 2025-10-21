@@ -200,6 +200,7 @@
 			href="public/manifest/apple-splash-1136-640.jpg"
 			media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
 		/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{{ title }}</title>
 		<meta name="title" content="{{ meta.title }}" />
@@ -357,6 +358,85 @@
 				<a href="{{ meta.link }}">Know More</a>
 			</div>
 		</div>
+	<footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Logo and Description Section -->
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    {% if website_settings.footer_logo %}
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <img src="{{ website_settings.footer_logo }}" alt="{{ website_settings.app_name }}" class="w-6 h-6">
+                    </div>
+                    {% else %}
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white"></i>
+                    </div>
+                    {% endif %}
+                    <span class="text-xl font-bold">{{ website_settings.app_name }}</span>
+                </div>
+                <p class="text-gray-400">Empowering learners worldwide with quality education and innovative technology.</p>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="/about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="/course_list" class="text-gray-400 hover:text-white transition">Courses</a></li>
+                    <li><a href="/contact" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    <li><a href="/" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Support Section -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Help Center</a></li>
+                    <li><a href="/contact" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    <li><a href="/contact#full-faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Community</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                <div class="flex space-x-4">
+                    {% for item in website_settings.footer_items %}
+                        {% if item.label.lower() == "linkedin" %}
+                        <a href="{{ item.url }}"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        {% elif item.label.lower() == "facebook" %}
+                        <a href="{{ item.url }}"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-800 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        {% elif item.label.lower() == "instagram" %}
+                        <a href="{{ item.url }}"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-pink-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        {% elif item.label.lower() == "twiter" %}
+                        <a href="{{ item.url }}"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-black transition">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>{{ website_settings.copyright }}</p>
+        </div>
+    </div>
+</footer>  
 		<script>
 			document.getElementById('seo-content').style.display = 'none';
 		</script>
