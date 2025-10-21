@@ -1,0 +1,260 @@
+{% extends "www/main.html" %}
+{% block page_content %}
+  
+
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Left Column - Course Content -->
+    <div class="lg:col-span-2">
+{% if course.video_link %}
+<!-- Course Preview - Simple YouTube Embed -->
+<div class="mb-8">
+    <div class="flex items-center mb-6">
+        <div class="w-2 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full mr-3"></div>
+        <h2 class="text-2xl font-bold text-gray-900">Course Preview</h2>
+    </div>
+    <div class="bg-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-800">
+        <div class="aspect-w-16 aspect-h-9">
+            {# Handle different URL formats #}
+            {% if 'watch?v=' in course.video_link %}
+                {# Full YouTube URL like: https://www.youtube.com/watch?v=XKHEtdqhLK8 #}
+                <iframe 
+                    src="https://www.youtube.com/embed/{{ course.video_link.split('watch?v=')[1].split('&')[0] }}"
+                    class="w-full h-64 lg:h-96"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            {% elif 'youtu.be/' in course.video_link %}
+                {# Short YouTube URL like: https://youtu.be/XKHEtdqhLK8 #}
+                <iframe 
+                    src="https://www.youtube.com/embed/{{ course.video_link.split('youtu.be/')[1].split('?')[0] }}"
+                    class="w-full h-64 lg:h-96"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            {% else %}
+                {# Assume it's just the YouTube ID like: XKHEtdqhLK8 #}
+                <iframe 
+                    src="https://www.youtube.com/embed/{{ course.video_link }}"
+                    class="w-full h-64 lg:h-96"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% elif course.image %}
+<!-- Course Image - Clean -->
+<div class="mb-8">
+    <div class="rounded-xl overflow-hidden shadow-lg border border-gray-200">
+        <img src="{{ course.image }}" alt="{{ course.title }}" class="w-full h-64 lg:h-96 object-cover">
+    </div>
+</div>
+{% endif %}
+<!-- Course Description - Modern Card -->
+<div class="mb-8">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+            <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            About This Course
+        </h2>
+        <div class="text-gray-700 leading-relaxed text-lg bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            {{ course.description or course.short_introduction or "No description available." }}
+        </div>
+    </div>
+</div>
+        <!-- Rest of your content remains the same -->
+        <!-- Benefits of the Course Section -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Benefits of This Course</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Benefit 1 -->
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
+                    <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Practical Skills</h3>
+                    </div>
+                    <p class="text-sm text-gray-700">Gain hands-on experience with real-world applications and projects that you can immediately implement.</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-green-50 rounded-lg p-4 border border-green-100">
+                    <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Career Advancement</h3>
+                    </div>
+                    <p class="text-sm text-gray-700">Enhance your professional profile and open doors to new career opportunities with certified expertise.</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-purple-50 rounded-lg p-4 border border-purple-100">
+                    <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Expert Guidance</h3>
+                    </div>
+                    <p class="text-sm text-gray-700">Learn from industry professionals with years of experience and get personalized feedback on your progress.</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                    <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900">Flexible Learning</h3>
+                    </div>
+                    <p class="text-sm text-gray-700">Study at your own pace with lifetime access to course materials and updates.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Curriculum - Only show if chapters exist -->
+        {% if chapters and chapters|length > 0 %}
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Course Content</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                {% for chapter in chapters %}
+                <div class="border-b border-gray-200 last:border-b-0">
+                    <div class="p-4 bg-gray-50">
+                        <h3 class="font-semibold text-gray-900">{{ chapter.title }}</h3>
+                        {% if chapter.description %}
+                        <p class="text-sm text-gray-600 mt-1">{{ chapter.description }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    {% if chapter.lessons and chapter.lessons|length > 0 %}
+                    <div class="divide-y divide-gray-100">
+                        {% for lesson in chapter.lessons %}
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                </svg>
+                                <span class="text-gray-700">{{ lesson.title }}</span>
+                            </div>
+                            {% if lesson.duration %}
+                            <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                                {{ lesson.duration }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Right Column - Course Info & Enrollment -->
+    <div class="lg:col-span-1">
+        <!-- Enrollment Card -->
+        <div class="bg-white rounded-lg shadow-lg border border-gray-200 sticky top-8">
+            <div class="p-6">
+                {% if course.paid_course %}
+                <div class="text-center mb-4">
+                    <span class="text-3xl font-bold text-gray-900">{{ course.course_price }} {{ course.currency }}</span>
+                    {% if course.amount_usd %}
+                    <p class="text-sm text-gray-600">Approx. ${{ course.amount_usd }} USD</p>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="text-center mb-4">
+                    <span class="text-3xl font-bold text-green-600">Free</span>
+                </div>
+                {% endif %}
+
+               <button 
+    onclick="window.location.href='{% if course.paid_course %}/lms/billing/course/{{ course.name }}{% else %}/lms/courses/{{ course.name }}{% endif %}'"
+    class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mb-4">
+    {% if course.paid_course %}
+    Enroll Now - {{ course.course_price }} {{ course.currency }}
+    {% else %}
+    Start for Free
+    {% endif %}
+</button>
+
+                <div class="text-center text-sm text-gray-600 mb-4">
+                    {% if course.enable_certification %}
+                    <p>📜 Certificate included</p>
+                    {% endif %}
+                    <p>🕒 Lifetime access</p>
+                </div>
+
+                <!-- Course Features -->
+                <div class="space-y-3">
+                    <div class="flex items-center text-sm text-gray-700">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>{{ lessons_count }} lessons</span>
+                    </div>
+                    {% if chapters and chapters|length > 0 %}
+                    <div class="flex items-center text-sm text-gray-700">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>{{ chapters|length }} chapters</span>
+                    </div>
+                    {% endif %}
+                    {% if course.enable_certification %}
+                    <div class="flex items-center text-sm text-gray-700">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Certificate of completion</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructors Section -->
+        {% if instructors and instructors|length > 0 %}
+        <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Instructors</h3>
+            <div class="space-y-4">
+                {% for instructor in instructors %}
+                <div class="flex items-center">
+                    {% if instructor.user_image %}
+                    <img src="{{ instructor.user_image }}" alt="{{ instructor.full_name }}" class="w-12 h-12 rounded-full mr-3">
+                    {% else %}
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-gray-600 text-sm font-semibold">{{ instructor.full_name[0] if instructor.full_name else 'I' }}</span>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h4 class="font-semibold text-gray-900">{{ instructor.full_name }}</h4>
+                        <p class="text-sm text-gray-600">{{ instructor.headline }}</p>
+                    </div>
+                </div>
+                {% if instructor.bio %}
+                <p class="text-sm text-gray-700">{{ instructor.bio }}</p>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,555 @@
+{% extends "www/main.html" %}
+
+{% block page_content %}
+  
+
+<!-- Hero Section -->
+<section class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute top-40 left-1/4 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <div class="container mx-auto px-6 py-24 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <!-- Left Column - Text Content -->
+            <div class="flex-1 max-w-2xl">
+                <!-- Badge -->
+                <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-6 animate-fade-in">
+                    <i class="fas fa-rocket mr-2"></i>
+                    Transform Your Learning Journey
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    Sustainability 
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                       made Simple for SME
+                    </span>
+                </h1>
+
+                <!-- Subheading -->
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Collect, monitor and report your ESG/VSME data to all your stakeholders, while improving your company's ESG performance - fast and easily
+                </p>
+
+                <!-- Features List -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Expert Instructors</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Interactive Content</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Career Certificates</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Lifetime Access</span>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <!-- Register Button - Primary -->
+                   <button
+                      onclick="document.querySelector('#premiunm-certification')?.scrollIntoView({behavior: 'smooth', block: 'start'})"
+                      class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center text-lg"
+                    >
+                      <i class="fas fa-crown mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                      Get Started
+                    </button>
+
+                    
+                    <!-- Secondary Button -->
+                    <a href="/course_list#certification-courses" class="group border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-2xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-300 flex items-center justify-center text-lg">
+                        <i class="fas fa-play-circle mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                        Explore Courses
+                    </a>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 text-sm text-gray-500">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-users text-blue-500"></i>
+                        <span>10,000+ Students</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <span>4.9/5 Rating</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-globe text-green-500"></i>
+                        <span>Worldwide</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Image/Illustration -->
+            <div class="flex-1 flex justify-center lg:justify-end">
+                <div class="relative max-w-md">
+                    <!-- Main Image Container -->
+                    <div class="relative bg-white rounded-3xl shadow-2xl p-6 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img 
+                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                            alt="Students learning together in modern classroom" 
+                            class="rounded-2xl shadow-lg w-full h-auto"
+                        />
+                        
+                        <!-- Floating Element 1 -->
+                        <div class="absolute -top-4 -left-4 bg-white rounded-2xl shadow-lg p-4 animate-bounce">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-900">Courses</div>
+                                    <div class="text-2xl font-bold text-green-600">500+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Element 2 -->
+                        <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg p-4 animate-bounce animation-delay-1000">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-trophy text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-900">Success Rate</div>
+                                    <div class="text-2xl font-bold text-blue-600">98%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Background Decoration -->
+                    <div class="absolute -z-10 top-6 right-6 w-full h-full bg-gradient-to-br from-blue-200 to-purple-200 rounded-3xl transform -rotate-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-gray-400 rounded-full mt-2"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses Section -->
+<section class="relative py-20 px-4 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img 
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+            alt="Background"
+            class="w-full h-full object-cover"
+        >
+    </div>
+    
+    <!-- Blue Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-indigo-800/90"></div>
+    
+    <!-- Subtle Pattern Overlay -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="w-full h-full" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.4\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto text-white relative z-10">
+        <h1 class="text-4xl md:text-6xl font-bold mb-8 text-center">
+          The most complete ESG/VSME 
+        </h1>
+        <p class="text-2xl md:text-3xl mb-10 font-light text-center">reporting tool, tailored for SME. Centralized, Collaborative & Automated Data Collection</p>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-10 md:p-12 mb-12 w-full border border-white/20">
+            <p class="text-xl md:text-2xl leading-relaxed text-center md:text-left">
+               Forget the spreadsheets and scattered files.
+Gather ESG data effortlessly from The mostyour team and stakeholders - everything centralized in one single place, so you can track, analyze, and report with confidence.
+We automate data collection process with smart integrations and full-document uploads, minimizing manual work.
+            </p>
+        </div>
+        
+        <div class="text-center mb-16">
+            <a href="/team_trainig_program" class="inline-block bg-white text-blue-900 font-semibold py-5 px-14 rounded-lg shadow-lg hover:bg-blue-100 transition duration-300 transform hover:-translate-y-1 text-xl">
+                Get Started
+            </a>
+        </div>
+    </div>
+</section>
+<section class="bg-gradient-to-br from-white to-gray-50 py-20 px-4 w-full">
+  <div class="w-full max-w-6xl mx-auto">
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-20">
+      <div class="bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-300"></div>
+        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Smart ESG Analytics</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">Our Analytics Dashboard provides a clear and intuitive interface for you to easily analyze your data. From clear graphs to real-time data updates, our dashboard offers everything you need to gain valuable insights.</p>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-sm border border-green-200/50 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-green-300"></div>
+        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Ready-to-Share Report</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">Transform your ESG data into a professional, shareable report aligned with CSRD/VSME. Export data in Excel or PDF formats to easily respond to client, investor, or regulatory requests - without the back-and-forth.</p>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-sm border border-emerald-200/50 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-300"></div>
+        <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">ESG Policy Development</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">Easily create your company's ESG policy. Our guided process and smart templates help you draft clear, customized policy documents that align with your sustainability goals and stakeholder expectations.</p>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-sm border border-teal-200/50 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-teal-300"></div>
+        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+          </svg>
+        </div>
+        <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Benchmark ESG Suggestions</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">Get tailored recommendations to improve your ESG performance. Based on your data and industry benchmarks, GreenDash suggests actionable practices so your company can align with the best in class.</p>
+      </div>
+    </div>
+
+
+    <!-- EFRAG Section -->
+    <!-- EFRAG Section -->
+<div class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-3xl p-12 md:p-16 w-full shadow-2xl relative overflow-hidden group">
+  <!-- Animated background elements -->
+  <div class="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-40 translate-x-40 group-hover:scale-110 transition-transform duration-1000"></div>
+  <div class="absolute bottom-0 left-0 w-60 h-60 bg-white/5 rounded-full -translate-x-32 translate-y-32 group-hover:scale-110 transition-transform duration-1000 delay-200"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/3 rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-1000"></div>
+  
+  <!-- Floating particles -->
+  <div class="absolute top-1/4 left-1/4 w-4 h-4 bg-white/20 rounded-full animate-pulse"></div>
+  <div class="absolute top-3/4 right-1/3 w-3 h-3 bg-white/30 rounded-full animate-pulse delay-300"></div>
+  <div class="absolute bottom-1/4 left-1/3 w-2 h-2 bg-white/40 rounded-full animate-pulse delay-700"></div>
+  
+  <div class="flex flex-col md:flex-row items-center gap-12 relative z-10">
+    <div class="md:w-2/5 text-center md:text-left">
+      <div class="inline-block bg-white/20 backdrop-blur-xl rounded-3xl p-8 mb-8 border border-white/40 shadow-2xl hover:bg-white/25 hover:border-white/50 transition-all duration-500 hover:scale-105 group/badge">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl opacity-0 group-hover/badge:opacity-100 transition-opacity duration-500"></div>
+        <h4 class="text-4xl font-bold text-white relative z-10 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+          Full-Customer Support
+        </h4>
+        <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-white/30 rounded-full blur-sm"></div>
+        <div class="absolute -top-2 -left-2 w-4 h-4 bg-white/20 rounded-full blur-sm"></div>
+      </div>
+     
+    </div>theCSRD
+    
+    <div class="md:w-3/5">
+      <p class="text-2xl md:text-3xl leading-relaxed mb-8 text-white font-medium bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+        Full-Customer Support from our Sustainability Experts.
+      </p>
+      <p class="text-xl text-blue-100/90 leading-relaxed font-light">
+       Our dedicated team provides you End-to-End guidance, from helping you navigate our platform, understanding the CSRD/VSME, to supporting your reporting on all the data points required.
+      </p>
+    </div>
+  </div>
+  
+  <!-- Bottom accent glow -->
+  <div class="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-white to-indigo-400 opacity-60 blur-sm"></div>
+</div>
+  </div>
+</section>
+
+<section id="premiunm-certification" class="bg-gradient-to-br from-gray-50 to-blue-50 py-24 px-4 w-full relative overflow-hidden">
+  <!-- Background decorative elements -->
+  <div class="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 blur-xl"></div>
+  <div class="absolute bottom-10 right-10 w-32 h-32 bg-indigo-300 rounded-full opacity-30 blur-xl"></div>
+  <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-purple-200 rounded-full opacity-40 blur-lg"></div>
+  
+  <div class="w-full max-w-7xl mx-auto relative z-10">
+    <!-- Enhanced Description Section -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center justify-center mb-6">
+        <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-semibold rounded-full shadow-lg">
+          PREMIUM CERTIFICATION
+        </span>
+      </div>
+      <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+        Professional <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Certification Program</span>
+      </h2>
+      <p class="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-10">
+        Advance your career with our globally recognised certification courses, designed by industry experts to provide you with the most current and comprehensive knowledge in sustainability reporting.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <div class="flex items-center text-gray-600">
+          <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Industry Experts</span>
+        </div>
+        <div class="flex items-center text-gray-600">
+          <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Global Recognition</span>
+        </div>
+        <div class="flex items-center text-gray-600">
+          <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Career Advancement</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Cards Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <!-- First Card -->
+      <div class="group relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative bg-white rounded-2xl p-10 shadow-2xl border border-gray-100 transform transition-all duration-500 group-hover:-translate-y-3">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-2xl font-bold text-gray-900">Master ESG, SDG and CSRD/VSME</h3>
+                <p class="text-gray-600">From Zero to Pro</p>
+              </div>
+            </div>
+            <span class="px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 text-sm font-bold rounded-full border border-blue-200 shadow-sm">
+              COMING SOON
+            </span>
+          </div>
+          
+          <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+            Grow your expertise and learn about ESG, SDG and CSRD/VSME from Zero to Pro. No Jargon or Complexity, Just Clarity.
+          </p>
+          
+          <div class="mb-8">
+            <h4 class="font-semibold text-gray-900 mb-4">What You'll Master:</h4>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="flex items-center bg-blue-50 rounded-lg p-3 transition-all duration-300 hover:bg-blue-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">ESG Fundamentals</span>
+              </div>
+              <div class="flex items-center bg-blue-50 rounded-lg p-3 transition-all duration-300 hover:bg-blue-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">SDG Implementation</span>
+              </div>
+              <div class="flex items-center bg-blue-50 rounded-lg p-3 transition-all duration-300 hover:bg-blue-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">CSRD/VSME Standards</span>
+              </div>
+              <div class="flex items-center bg-blue-50 rounded-lg p-3 transition-all duration-300 hover:bg-blue-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Reporting Frameworks</span>
+              </div>
+            </div>
+          </div>
+          
+          <button class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl flex items-center justify-center group">
+            <span>Apply for Certification </span>
+            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Second Card -->
+      <div class="group relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative bg-white rounded-2xl p-10 shadow-2xl border border-gray-100 transform transition-all duration-500 group-hover:-translate-y-3">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-2xl font-bold text-gray-900">Get Certified & Showcase Expertise</h3>
+                <p class="text-gray-600">Professional Credibility</p>
+              </div>
+            </div>
+            <span class="px-4 py-2 bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-700 text-sm font-bold rounded-full border border-emerald-200 shadow-sm">
+              CERTIFICATION
+            </span>
+          </div>
+          
+          <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+            Get certified and showcase your alignment with CSRD/VSME and SDG standards to advance your professional credibility.
+          </p>
+          
+          <div class="mb-8">
+            <h4 class="font-semibold text-gray-900 mb-4">Certification Benefits:</h4>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="flex items-center bg-emerald-50 rounded-lg p-3 transition-all duration-300 hover:bg-emerald-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Industry Recognition</span>
+              </div>
+              <div class="flex items-center bg-emerald-50 rounded-lg p-3 transition-all duration-300 hover:bg-emerald-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Career Advancement</span>
+              </div>
+              <div class="flex items-center bg-emerald-50 rounded-lg p-3 transition-all duration-300 hover:bg-emerald-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Digital Badge</span>
+              </div>
+              <div class="flex items-center bg-emerald-50 rounded-lg p-3 transition-all duration-300 hover:bg-emerald-100 hover:shadow-sm">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Networking</span>
+              </div>
+            </div>
+          </div>
+          
+          <button class="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl flex items-center justify-center group">
+            <span>Apply for Certification</span>
+            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stylish Collaborating Section -->
+<section class="py-20 bg-gradient-to-br from-white to-blue-50">
+    <div class="container mx-auto px-4">
+        <!-- Header Section -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-6">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Trusted Partnerships
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Collaborating with the 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    Best in Town
+                </span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Partnering with industry leaders to deliver exceptional results and drive innovation forward
+            </p>
+        </div>
+
+        <!-- Companies Grid -->
+        <div class="relative">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 opacity-80 hover:opacity-100 transition-all duration-500">
+                {% set companies = frappe.get_all("Colab Companies", 
+                    fields=["company_name", "logo"]) %}
+                
+                {% for company in companies %}
+                    {% if company.logo %}
+                        <div class="group relative">
+                            <div class="absolute inset-0 bg-blue-100 rounded-xl transform rotate-3 scale-105 group-hover:rotate-0 group-hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
+                            <img src="{{ company.logo }}" alt="{{ company.company_name }}" 
+                                 class="relative h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110 z-10"
+                                 title="{{ company.company_name }}">
+                        </div>
+                    {% else %}
+                        <div class="h-12 px-6 flex items-center justify-center bg-white border border-gray-200 rounded-xl text-gray-500 text-base font-semibold shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+                            {{ company.company_name }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Background decorative elements -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000"></div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-600 mb-6">Want to join our network of partners?</p>
+            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                Become a Partner
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Start Learning?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join thousands of students who are already advancing their careers
+                with LearnHub</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    onclick="window.location.href='/course_list'"
+                    class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-200">
+                    Get Started
+                </button>
+                <!-- Your button (on the main page) -->
+                <button
+                  onclick="window.location.href='/team_trainig_program#program-cards'"
+                  class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-200">
+                  Schedule a Demo
+                </button>
+
+                <!-- Add this script inside team_trainig_program.html -->
+                <script>
+                  window.addEventListener("DOMContentLoaded", () => {
+                    if (window.location.hash === "#program-cards") {
+                      const el = document.querySelector(window.location.hash);
+                      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  });
+                </script>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

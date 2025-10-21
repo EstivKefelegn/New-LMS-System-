@@ -1,0 +1,522 @@
+{% extends "www/main.html" %}
+
+{% block page_content %}
+
+ {% set website_settings = frappe.get_doc('Website Settings', 'Website Settings') %}
+
+<!-- Hero Section -->
+<!-- Hero Section -->
+<section class="relative py-16 md:py-20 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img 
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+            alt="Team Training"
+            class="w-full h-full object-cover"
+        >
+    </div>
+    
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-purple-900/90"></div>
+    
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Badge -->
+            <div class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-white/30">
+                <span class="text-white font-semibold text-sm">Team Training</span>
+            </div>
+            
+            <!-- Main Heading -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+                Get your team<br>{{ website_settings.app_name }} Institute certified.
+            </h1>
+            
+            <!-- Description -->
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed">
+                Empower your team with flexible online training in the {{ website_settings.app_name }} with the VSME Standard and enhance sustainability reporting skills across your organisation.
+            </p>
+            
+            <!-- CTA Button -->
+            <div class="flex justify-center gap-4">
+               <button onclick="document.querySelector('#course-program')?.scrollIntoView({behavior: 'smooth', block: 'start'})" class="bg-white text-blue-900 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1">
+    Learn More
+</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Intro Section -->
+<section id="program-cards" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ website_settings.app_name }} Institute</h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Internationally recognised certification courses in the {{ website_settings.app_name }} with the VSME Standard
+            </p>
+            <p class="text-lg text-gray-600 mb-12 leading-relaxed">
+                Keep your team updated with the most relevant and important information regarding the Corporate Sustainability Reporting Directive and the Voluntary Sustainability Reporting Standard for SMEs (VSME).
+            </p>
+            
+            <!-- Course Grid -->
+            <div id="course-program" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {% for course in courses %}
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg hover:border-blue-200">
+                    <!-- Course Image -->
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center relative overflow-hidden">
+                        {% if course.image %}
+                        <img src="{{ course.image }}" alt="{{ course.title }}" class="h-full w-full object-cover">
+                        {% else %}
+                        <div class="text-white text-center">
+                            <i class="fas fa-graduation-cap text-6xl mb-2"></i>
+                            <p class="text-lg font-semibold">{{ course.title or course.name }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Badge -->
+                        {% if course.badge %}
+                        <span class="absolute top-4 right-4 bg-{{ course.badge.color }}-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {{ course.badge.text }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="p-6">
+                        <!-- Course Title -->
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{{ course.title or course.name }}</h3>
+                        
+                        <!-- Short Introduction -->
+                        <p class="text-gray-600 mb-4 line-clamp-3">{{ course.short_introduction or "Comprehensive course covering essential topics." }}</p>
+                        
+                        <!-- Instructor Info -->
+                        <div class="flex items-center mb-4">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-blue-600 text-sm font-bold">{{ course.instructor_initials }}</span>
+                            </div>
+                            <span class="text-sm text-gray-600">{{ course.instructor_name }}</span>
+                        </div>
+                        
+                        <!-- Course Details -->
+                        <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span>{{ course.rating }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>{{ course.duration }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar mr-1"></i>
+                                <span>{{ frappe.utils.format_date(course.creation, "medium") }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Price and Enroll Button -->
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                            <div>
+                                <span class="text-blue-600 font-bold text-lg">{{ course.course_price or "Free" }} {{ course.currency if course.course_price else "" }}</span>
+                            </div>
+                            <button onclick="window.location.href=href='/course/{{ course.name }}'" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        <!-- View All Courses Button -->
+        <button id="load-more-courses"
+            class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+            View all courses ({{ total_courses }}+ available)
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="hidden mt-4 text-blue-600 font-medium">
+            <i class="fas fa-spinner fa-spin mr-2"></i> Loading more courses...
+        </div>
+
+        <script>
+        let loadedCourses = {{ courses | length }};
+        const totalCourses = {{ total_courses }};
+        const loadMoreBtn = document.getElementById("load-more-courses");
+        const courseContainer = document.getElementById("course-program");
+        const loadingSpinner = document.getElementById("loading-spinner");
+
+        loadMoreBtn.addEventListener("click", async () => {
+            // Show spinner, hide button
+            loadMoreBtn.classList.add("hidden");
+            loadingSpinner.classList.remove("hidden");
+
+            try {
+                const response = await fetch(`/api/method/lms.api.courses.get_more_courses?start=${loadedCourses}&limit=6`);
+                const result = await response.json();
+
+                // ✅ Check if data exists
+                if (result.message && result.message.courses && result.message.courses.length > 0) {
+                    result.message.courses.forEach(course => {
+                        const courseCard = `
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg hover:border-blue-200">
+                                <div class="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center relative overflow-hidden">
+                                    ${course.image ? `<img src="${course.image}" alt="${course.title}" class="h-full w-full object-cover">` :
+                                    `<div class='text-white text-center'>
+                                        <i class='fas fa-graduation-cap text-6xl mb-2'></i>
+                                        <p class='text-lg font-semibold'>${course.title}</p>
+                                    </div>`}
+                                </div>
+
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">${course.title}</h3>
+                                    <p class="text-gray-600 mb-4 line-clamp-3">${course.short_introduction || "Comprehensive course covering essential topics."}</p>
+
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-blue-600 text-sm font-bold">${(course.instructor_name || '?')[0]}</span>
+                                        </div>
+                                        <span class="text-sm text-gray-600">${course.instructor_name || "Instructor"}</span>
+                                    </div>
+
+                                    <div class="flex justify-between items-center mb-4 text-sm text-gray-500">
+                                        <div class="flex items-center"><i class="fas fa-star text-yellow-400 mr-1"></i>${course.rating || "5.0"}</div>
+                                        <div class="flex items-center"><i class="fas fa-clock mr-1"></i>${course.duration || "Self-paced"}</div>
+                                        <div class="flex items-center"><i class="fas fa-calendar mr-1"></i>${course.creation.split(" ")[0]}</div>
+                                    </div>
+
+                                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                                        <div>
+                                            <span class="text-blue-600 font-bold text-lg">${course.course_price || "Free"} ${course.currency || ""}</span>
+                                        </div>
+                                        <button onclick="window.location.href='/course/${course.name}'"
+                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                            Enroll Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        courseContainer.insertAdjacentHTML("beforeend", courseCard);
+                    });
+
+                    loadedCourses += result.message.courses.length;
+                }
+            } catch (err) {
+                console.error("Error loading more courses:", err);
+            }
+
+            // Hide spinner
+            loadingSpinner.classList.add("hidden");
+
+            // Hide button if all are loaded
+            if (loadedCourses < totalCourses) {
+                loadMoreBtn.classList.remove("hidden");
+            } else {
+                loadMoreBtn.remove();
+            }
+        });
+        </script>
+
+
+        </div>
+    </div>
+</section>
+
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why choose the {{ website_settings.app_name }} Institute?</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Our self-paced online training courses are designed to equip your team with a thorough understanding of the {{website_settings.app_name}} and the VSME Standard. Your team will gain essential knowledge and skills that will ensure a smooth and efficient reporting process, and help your organisation navigate these standards with ease and confidence.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Benefit 1 -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Ensure compliance</h3>
+                <p class="text-gray-600">Ensure your organisation complies with the reporting regulations and deadlines.</p>
+            </div>
+            
+            <!-- Benefit 2 -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Time efficient</h3>
+                <p class="text-gray-600">Employee time is valuable. We have efficiently condensed the essential information.</p>
+            </div>
+            
+            <!-- Benefit 3 -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Competitive advantage</h3>
+                <p class="text-gray-600">Understand the nuances of the {{website_settings.app_name}} and the VSME Standard and leverage sustainability efforts for a competitive edge.</p>
+            </div>
+            
+            <!-- Benefit 4 -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Full admin control</h3>
+                <p class="text-gray-600">Assign a member of your team to oversee course administration, or we can do it for you.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Intro Section -->
+<section class="py-16 bg-gradient-to-br from-gray-50 to-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-left">
+                    <div class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                        Global Certification
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                       {{website_settings.app_name}} Institute
+                    </h2>
+                    <p class="text-xl text-gray-700 mb-6 leading-relaxed font-medium">
+                        Internationally recognised certification courses in the {{website_settings.app_name}} and the VSME Standard
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Keep your team updated with the most relevant and important information regarding the Corporate Sustainability Reporting Directive ({{website_settings.app_name}}) and the Voluntary Sustainability Reporting Standard for SMEs (VSME).
+                    </p>
+                    <a href="/course_list#certification-courses" class="group bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl flex items-center space-x-3">
+                        <span>View all courses</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Visual Element -->
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                        <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -translate-x-12 translate-y-12"></div>
+                        
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4">Why Choose Us?</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3">
+                                    <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span>Globally Recognized</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span>Expert-Led Training</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span>Practical Implementation</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span>Lifetime Access</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-8 border-t border-gray-200">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">30K+</div>
+                    <div class="text-gray-600">Professionals Certified</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                    <div class="text-gray-600">Countries</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">4.9/5</div>
+                    <div class="text-gray-600">Rating</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                    <div class="text-gray-600">Companies</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Section -->
+
+
+<!-- Learning Platform Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How will your team learn?</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Our user friendly learning platform is designed for working professionals of all levels and job roles in an easy-to-follow format.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Feature 1 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Self-paced, fully online</h3>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Bite-sized lessons</h3>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Study Notes and Resources</h3>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-1"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Community Hub and Discussion Forums*</h3>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Course Instructor*</h3>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500 text-sm">*Open to course participants in {{website_settings.app_name}} Advanced (Level 2), {{website_settings.app_name}} Professional (Level 3), and Reporting with the VSME Standard.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+
+
+
+<!-- {{website_settings.app_name}} Certification Courses -->
+
+<!-- Trusted By Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Trusted by leading organisations worldwide</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Leading companies worldwide are empowering their teams with crucial knowledge and skills in VSME Standard reporting.
+            </p>
+        </div>
+        
+        <!-- Trust Logos Grid -->
+        <div class="flex flex-wrap justify-center gap-8 opacity-60">
+            {% set companies = frappe.get_all(
+                'Colab Companies',
+                fields=['company_name', 'logo'],
+                limit_page_length=12
+            ) %}
+            
+            {% for company in companies %}
+                <div class="bg-gray-100 h-28 rounded-lg flex items-center justify-center p-4 hover:opacity-100 transition-opacity duration-300 w-48">
+                    {% if company.logo %}
+                        <img src="{{ company.logo }}" 
+                             alt="{{ company.company_name }}" 
+                             class="max-h-16 max-w-full object-contain">
+                    {% else %}
+                        <span class="text-gray-500 font-semibold text-sm text-center px-2">
+                            {{ company.company_name }}
+                        </span>
+                    {% endif %}
+                </div>
+            {% else %}
+                <!-- No companies message -->
+                <div class="w-full text-center py-8">
+                    <span class="text-gray-400 italic">No companies available</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- VSME Certification -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Need VSME Standard training for your team?</h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Our Reporting with the VSME Standard course offers a comprehensive understanding of the VSME Standard, ensuring that your team is well-equipped with the knowledge and skills necessary to implement the standard effectively.
+            </p>
+            <button onclick="window.location.href='/contact'" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 text-lg">
+                Contact us
+            </button>
+            <p class="text-gray-600 mt-4">
+                Ready to empower your team for sustainability reporting success?
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

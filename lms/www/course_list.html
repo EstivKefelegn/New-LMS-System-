@@ -1,0 +1,446 @@
+{% extends "www/main.html" %}
+{% block page_content %}
+
+<!-- Hero Section -->
+<section class="relative py-16 md:py-20 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img 
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+            alt="Courses Background"
+            class="w-full h-full object-cover"
+        >
+    </div>
+    
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-purple-900/90"></div>
+    
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Main Heading -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+                All Courses
+            </h1>
+            
+            <!-- Description -->
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed">
+                Explore our comprehensive catalog of certification courses designed to advance your career in sustainability reporting.
+            </p>
+            
+            <!-- Quick Stats -->
+            <div class="flex justify-center gap-8 mb-8">
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-white">{{ total_courses or 0 }}+</div>
+                    <div class="text-blue-200 text-sm">Courses</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-white">4.8/5</div>
+                    <div class="text-blue-200 text-sm">Avg Rating</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-white">30K+</div>
+                    <div class="text-blue-200 text-sm">Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="certification-courses" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Certification Courses</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Browse through our complete course catalog and find the perfect certification for your career goals</p>
+        </div>
+
+        <!-- Courses Grid -->
+        <div id="courses-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in courses %}
+            <!-- Dynamic Course Card -->
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 overflow-hidden course-card">
+                <!-- Course Image -->
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 relative overflow-hidden">
+                    {% if course.image %}
+                    <img 
+                        src="{{ course.image }}" 
+                        alt="{{ course.title }}"
+                        class="w-full h-full object-cover"
+                        onerror="this.style.display='none'"
+                    >
+                    {% endif %}
+                    <div class="absolute inset-0 bg-blue-900/40"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            {{ course.badge.text }}
+                        </span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <h3 class="text-white text-xl font-bold drop-shadow-lg">{{ course.title }}</h3>
+                    </div>
+                </div>
+                
+                <!-- Course Content -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="flex items-center text-yellow-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span class="text-gray-600 text-sm ml-1">{{ course.rating }}</span>
+                            </div>
+                            <span class="text-gray-400">•</span>
+                            <span class="text-gray-500 text-sm">{{ course.duration }}</span>
+                        </div>
+                        <span class="text-blue-600 font-bold text-lg">
+                            {% if course.course_price %}€{{ course.course_price }}{% else %}Free{% endif %}
+                        </span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-4 line-clamp-2">
+                        {{ course.short_introduction or "Comprehensive certification course covering all essential topics." }}
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span class="text-blue-600 text-sm font-bold">{{ course.instructor_initials }}</span>
+                            </div>
+                            <span class="text-gray-600 text-sm">{{ course.instructor_name }}</span>
+                        </div>
+                        <a href="/course/{{ course.name }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
+                            Ready to advance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            {% if not courses %}
+            <!-- Fallback when no courses -->
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-500 text-lg">No courses available at the moment.</p>
+            </div>
+            {% endif %}
+        </div>
+
+       
+    </div>
+</section>
+
+<script>
+let loadedCount = {{ courses|length if courses else 0 }};
+const totalCourses = {{ total_courses if total_courses else 0 }};
+
+console.log('=== COURSES DEBUG ===');
+console.log('Initial count:', loadedCount, 'Total:', totalCourses);
+
+frappe.ready(function() {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            console.log('Load more clicked, loading from:', loadedCount);
+            loadMoreCourses();
+        });
+    }
+});
+
+function loadMoreCourses() {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    
+    if (!loadMoreBtn) return;
+    
+    // Show loading state
+    loadMoreBtn.style.display = 'none';
+    if (loadingSpinner) loadingSpinner.classList.remove('hidden');
+    
+    // Use Frappe's standard get_list method with proper fields
+    frappe.call({
+        method: 'frappe.client.get_list',
+        args: {
+            doctype: 'LMS Course',
+            fields: [
+                'name', 
+                'title', 
+                'short_introduction', 
+                'image', 
+                'course_price', 
+                'instructor_name', 
+                'instructor_initials', 
+                'rating', 
+                'duration',
+                'custom_badge_text',
+                'course_intro',
+                'description',
+                'thumbnail',
+                'paid_course',
+                'upcoming',
+                'published'
+            ],
+            filters: {
+                'published': 1  // Only get published courses
+            },
+            limit_start: loadedCount,
+            limit: 3,  // Load 3 at a time to match initial display
+            order_by: 'creation desc'
+        },
+        callback: function(response) {
+            console.log('API Response:', response);
+            
+            if (response.message && response.message.length > 0) {
+                console.log('Courses received:', response.message);
+                
+                // Process and render courses
+                renderCourses(response.message);
+                loadedCount += response.message.length;
+                
+                // Update button or hide if no more courses
+                if (loadedCount < totalCourses) {
+                    loadMoreBtn.style.display = 'inline-block';
+                    loadMoreBtn.textContent = `Load More Courses (${totalCourses - loadedCount} remaining)`;
+                } else {
+                    const loadMoreContainer = document.getElementById('load-more-container');
+                    if (loadMoreContainer) {
+                        loadMoreContainer.innerHTML = '<p class="text-gray-500 mt-4">All courses loaded</p>';
+                    }
+                }
+            } else {
+                console.log('No more courses available');
+                const loadMoreContainer = document.getElementById('load-more-container');
+                if (loadMoreContainer) {
+                    loadMoreContainer.innerHTML = '<p class="text-gray-500 mt-4">All courses loaded</p>';
+                }
+            }
+            
+            if (loadingSpinner) loadingSpinner.classList.add('hidden');
+        },
+        error: function(err) {
+            console.error('API Error:', err);
+            if (loadingSpinner) loadingSpinner.classList.add('hidden');
+            if (loadMoreBtn) loadMoreBtn.style.display = 'inline-block';
+            
+            frappe.msgprint({
+                title: __('Error'),
+                message: __('Failed to load courses. Please try again.'),
+                indicator: 'red'
+            });
+        }
+    });
+}
+
+function renderCourses(courses) {
+    const coursesContainer = document.getElementById('courses-container');
+    
+    if (!coursesContainer) {
+        console.error('Courses container not found');
+        return;
+    }
+    
+    console.log('Rendering courses:', courses.length);
+    
+    courses.forEach(course => {
+        const courseCard = createCourseCard(course);
+        coursesContainer.appendChild(courseCard);
+    });
+}
+
+function createCourseCard(course) {
+    const div = document.createElement('div');
+    div.className = 'bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 overflow-hidden course-card';
+    
+    // Extract data with proper fallbacks
+    const title = course.title || course.course_name || 'Untitled Course';
+    const shortIntro = course.short_introduction || course.course_intro || course.description || 'Comprehensive certification course covering all essential topics.';
+    const price = course.course_price ? '€' + course.course_price : (course.paid_course ? 'Paid' : 'Free');
+    const instructorName = course.instructor_name || 'Expert Instructor';
+    const instructorInitials = course.instructor_initials || getInitials(instructorName);
+    const badgeText = course.custom_badge_text || course.badge_text || (course.upcoming ? 'Coming Soon' : 'Popular');
+    const rating = course.rating || 4.5;
+    const duration = course.duration || 'Self-paced';
+    const courseUrl = `/courses/${course.name}`;
+    const imageUrl = course.image || course.thumbnail;
+    
+    div.innerHTML = `
+        <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 relative overflow-hidden">
+            ${imageUrl ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover" onerror="this.style.display='none'">` : ''}
+            <div class="absolute inset-0 bg-blue-900/40"></div>
+            <div class="absolute top-4 left-4">
+                <span class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+                    ${badgeText}
+                </span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="text-white text-xl font-bold drop-shadow-lg">${title}</h3>
+            </div>
+        </div>
+        
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-2">
+                    <div class="flex items-center text-yellow-400">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <span class="text-gray-600 text-sm ml-1">${rating}</span>
+                    </div>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-gray-500 text-sm">${duration}</span>
+                </div>
+                <span class="text-blue-600 font-bold text-lg">${price}</span>
+            </div>
+            
+            <p class="text-gray-600 mb-4 line-clamp-2">${shortIntro}</p>
+            
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span class="text-blue-600 text-sm font-bold">${instructorInitials}</span>
+                    </div>
+                    <span class="text-gray-600 text-sm">${instructorName}</span>
+                </div>
+                <a href="${courseUrl}" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
+                    ready to advance
+                </a>
+            </div>
+        </div>
+    `;
+    
+    return div;
+}
+
+// Helper function to get initials
+function getInitials(name) {
+    if (!name) return 'EI';
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+}
+</script>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Our Courses?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Experience the difference with our industry-leading certification programs</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Benefit 1 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Expert Instructors</h3>
+                <p class="text-gray-600">Learn from industry practitioners with real-world experience</p>
+            </div>
+            
+            <!-- Benefit 2 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Practical Skills</h3>
+                <p class="text-gray-600">Hands-on learning with real-world case studies</p>
+            </div>
+            
+            <!-- Benefit 3 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Flexible Learning</h3>
+                <p class="text-gray-600">Study at your own pace with lifetime access</p>
+            </div>
+            
+            <!-- Benefit 4 -->
+            <div class="text-center">
+                <div class="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Global Recognition</h3>
+                <p class="text-gray-600">Certifications valued by employers worldwide</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Students Say</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Join thousands of professionals who have transformed their careers
+            </p>
+        </div>
+
+        {% if testimonials and testimonials|length > 0 %}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for testimonial in testimonials %}
+            <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg transition">
+                <!-- Reviewer Info -->
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-{{ testimonial.color_class }}-100 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-{{ testimonial.color_class }}-600 font-bold">{{ testimonial.user_initials }}</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">{{ testimonial.user_name }}</h4>
+                        {% if testimonial.user_headline %}
+                        <p class="text-gray-500 text-sm">{{ testimonial.user_headline }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Rating Stars -->
+                <div class="flex items-center mb-4">
+                    {% set rating_value = testimonial.rating|float %}
+                    <div class="flex text-yellow-400 mr-2">
+                        {% for i in range(1, 6) %}
+                            {% if i <= rating_value %}
+                                <span>★</span>
+                            {% elif i - rating_value < 1 %}
+                                <span>⯪</span> {# Optional half star #}
+                            {% else %}
+                                <span class="text-yellow-300">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <span class="text-sm text-gray-600 font-medium">{{ rating_value }}/5</span>
+                </div>
+
+                <!-- Review Text -->
+                <p class="text-gray-600">"{{ testimonial.review }}"</p>
+
+                <!-- Course Title -->
+                {% if testimonial.course_title %}
+                <p class="text-sm text-gray-500 mt-3">From: {{ testimonial.course_title }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-8">
+            <p class="text-gray-500">No testimonials available yet. Be the first to leave a review!</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+
+{% endblock %}
