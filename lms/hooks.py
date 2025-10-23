@@ -107,6 +107,13 @@ doc_events = {
 		"validate": "lms.lms.user.validate_username_duplicates",
 		"after_insert": "lms.lms.user.after_insert",
 	},
+	"LMS Course": {
+			"after_insert": "lms.api.course_notifications.notify_users_on_new_course"
+	},
+	"LMS Payment": {
+		"after_insert": "lms.api.invoice.create_invoice_for_payment",
+		"on_update": "lms.api.invoice.create_invoice_for_payment"
+	}
 }
 
 # Scheduled Tasks
@@ -172,6 +179,7 @@ website_route_rules = [
     {"from_route": "/team_trainig_program", "to_route": "team_training"},  
     {"from_route": "/lms/<path:app_path>", "to_route": "lms"},
     {"from_route": "/courses/<course_name>/<certificate_id>", "to_route": "certificate"},
+    
 ]
 
 
@@ -266,3 +274,9 @@ add_to_apps_screen = [
 		"has_permission": "lms.lms.api.check_app_permission",
 	}
 ]
+
+# hooks.py - Add to your LMS app hooks
+def after_payment_processed(payment_name):
+    """Hook to run after payment is processed"""
+    from lms.lms.doctype.lms_invoice.lms_invoice import create_invoice_from_payment
+    create_invoice_from_payment(payment_name)

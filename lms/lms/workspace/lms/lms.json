@@ -10,7 +10,7 @@
    "label": "Enrollments"
   }
  ],
- "content": "[{\"id\":\"0UIobtr1wM\",\"type\":\"card\",\"data\":{\"card_name\":\"Contact Us Submission\",\"col\":4}},{\"id\":\"K4LaiYDQqd\",\"type\":\"card\",\"data\":{\"card_name\":\"LMS Category\",\"col\":4}},{\"id\":\"9RjI4UxYkT\",\"type\":\"card\",\"data\":{\"card_name\":\"About Us\",\"col\":4}},{\"id\":\"dn2m8z8sLX\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/lms/courses\\\">it LMS Portal</a>\",\"col\":12}},{\"id\":\"lGMuNLpmv-\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/lms/courses/new/edit\\\">Create a Course</a>\",\"col\":4}},{\"id\":\"c0W1jCmurT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"settings\",\"col\":3}},{\"id\":\"3TVyc9AkPy\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/app/web-page/new-web-page-1\\\">Setup a Home Page</a>\",\"col\":4}},{\"id\":\"9zcbqpu2gm\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/app/lms-settings/LMS%20Settings\\\">LMS Settings</a>\",\"col\":4}},{\"id\":\"0ATmnKmXjc\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"https://docs.frappe.io/learning\\\">Documentation</a>\",\"col\":4}},{\"id\":\"C128a4abjX\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5q4sPiv2ci\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Signups\",\"col\":6}},{\"id\":\"8NSaRaEV5u\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Enrollments\",\"col\":6}},{\"id\":\"kMuzko0uAU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"iuvIOHmztI\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px;\\\"><b>Statistics</b></span>\",\"col\":12}},{\"id\":\"l0VTd66Uy2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Users\",\"col\":4}},{\"id\":\"wAWZin1KKk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":4}},{\"id\":\"RLrIlFx0Hd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Enrollments\",\"col\":4}},{\"id\":\"OuhWkhCQmq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Completed\",\"col\":4}},{\"id\":\"3g8QmNqUXG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Certificate\",\"col\":4}},{\"id\":\"EZsdsujs8N\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Evaluation\",\"col\":4}},{\"id\":\"s-nfsFQbGV\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"jeOBWBzHEa\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Master</b></span>\",\"col\":12}},{\"id\":\"sVhgfS5GIh\",\"type\":\"card\",\"data\":{\"card_name\":\"Course Data\",\"col\":4}},{\"id\":\"Iea0snm4Fg\",\"type\":\"card\",\"data\":{\"card_name\":\"Course Stats\",\"col\":4}},{\"id\":\"bZB7RqOl6a\",\"type\":\"card\",\"data\":{\"card_name\":\"Certification\",\"col\":4}}]",
+ "content": "[{\"id\":\"0UIobtr1wM\",\"type\":\"card\",\"data\":{\"card_name\":\"Contact Us Submission\",\"col\":4}},{\"id\":\"K4LaiYDQqd\",\"type\":\"card\",\"data\":{\"card_name\":\"LMS Category\",\"col\":4}},{\"id\":\"9RjI4UxYkT\",\"type\":\"card\",\"data\":{\"card_name\":\"About Us\",\"col\":4}},{\"id\":\"dn2m8z8sLX\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/lms/courses\\\">it LMS Portal</a>\",\"col\":12}},{\"id\":\"3o-PJr8sH8\",\"type\":\"card\",\"data\":{\"card_name\":\"Total Payment Analysis\",\"col\":4}},{\"id\":\"lGMuNLpmv-\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/lms/courses/new/edit\\\">Create a Course</a>\",\"col\":4}},{\"id\":\"c0W1jCmurT\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"settings\",\"col\":3}},{\"id\":\"3TVyc9AkPy\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/app/web-page/new-web-page-1\\\">Setup a Home Page</a>\",\"col\":4}},{\"id\":\"9zcbqpu2gm\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"/app/lms-settings/LMS%20Settings\\\">LMS Settings</a>\",\"col\":4}},{\"id\":\"0ATmnKmXjc\",\"type\":\"paragraph\",\"data\":{\"text\":\"<a href=\\\"https://docs.frappe.io/learning\\\">Documentation</a>\",\"col\":4}},{\"id\":\"C128a4abjX\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5q4sPiv2ci\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Signups\",\"col\":6}},{\"id\":\"8NSaRaEV5u\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Enrollments\",\"col\":6}},{\"id\":\"kMuzko0uAU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5xhhkGtfwg\",\"type\":\"card\",\"data\":{\"card_name\":\"Payment Details\",\"col\":4}},{\"id\":\"iuvIOHmztI\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px;\\\"><b>Statistics</b></span>\",\"col\":12}},{\"id\":\"l0VTd66Uy2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Users\",\"col\":4}},{\"id\":\"wAWZin1KKk\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course\",\"col\":4}},{\"id\":\"RLrIlFx0Hd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Enrollments\",\"col\":4}},{\"id\":\"OuhWkhCQmq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Course Completed\",\"col\":4}},{\"id\":\"3g8QmNqUXG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Certificate\",\"col\":4}},{\"id\":\"EZsdsujs8N\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Evaluation\",\"col\":4}},{\"id\":\"s-nfsFQbGV\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"jeOBWBzHEa\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Master</b></span>\",\"col\":12}},{\"id\":\"sVhgfS5GIh\",\"type\":\"card\",\"data\":{\"card_name\":\"Course Data\",\"col\":4}},{\"id\":\"Iea0snm4Fg\",\"type\":\"card\",\"data\":{\"card_name\":\"Course Stats\",\"col\":4}},{\"id\":\"bZB7RqOl6a\",\"type\":\"card\",\"data\":{\"card_name\":\"Certification\",\"col\":4}}]",
  "creation": "2021-10-21 17:20:01.358903",
  "custom_blocks": [],
  "docstatus": 0,
@@ -202,9 +202,48 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "description": "Total earnign from all the courses",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Total Payment Analysis",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "dashboard-view",
+   "link_count": 0,
+   "link_to": "dashboard-view",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Details",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Payment Report",
+   "link_count": 0,
+   "link_to": "Payment Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-10-21 14:30:06.183701",
+ "modified": "2025-10-23 12:11:41.209522",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS",

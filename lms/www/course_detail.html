@@ -1,72 +1,77 @@
 {% extends "www/main.html" %}
-{% block page_content %}
-  
+{% block head %}
+{{ super() }}
+<!-- Load Frappe JS for browser frappe.call -->
+<script type="text/javascript" src="/assets/frappe/js/frappe-web.min.js"></script>
+{% endblock %}
 
+{% block page_content %}
 <!-- Main Content Grid -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Left Column - Course Content -->
     <div class="lg:col-span-2">
-{% if course.video_link %}
-<!-- Course Preview - Simple YouTube Embed -->
-<div class="mb-8">
-    <div class="flex items-center mb-6">
-        <div class="w-2 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full mr-3"></div>
-        <h2 class="text-2xl font-bold text-gray-900">Course Preview</h2>
-    </div>
-    <div class="bg-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-800">
-        <div class="aspect-w-16 aspect-h-9">
-            {# Handle different URL formats #}
-            {% if 'watch?v=' in course.video_link %}
-                {# Full YouTube URL like: https://www.youtube.com/watch?v=XKHEtdqhLK8 #}
-                <iframe 
-                    src="https://www.youtube.com/embed/{{ course.video_link.split('watch?v=')[1].split('&')[0] }}"
-                    class="w-full h-64 lg:h-96"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
-            {% elif 'youtu.be/' in course.video_link %}
-                {# Short YouTube URL like: https://youtu.be/XKHEtdqhLK8 #}
-                <iframe 
-                    src="https://www.youtube.com/embed/{{ course.video_link.split('youtu.be/')[1].split('?')[0] }}"
-                    class="w-full h-64 lg:h-96"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
-            {% else %}
-                {# Assume it's just the YouTube ID like: XKHEtdqhLK8 #}
-                <iframe 
-                    src="https://www.youtube.com/embed/{{ course.video_link }}"
-                    class="w-full h-64 lg:h-96"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
-            {% endif %}
+        {% if course.video_link %}
+        <!-- Course Preview - Simple YouTube Embed -->
+        <div class="mb-8">
+            <div class="flex items-center mb-6">
+                <div class="w-2 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full mr-3"></div>
+                <h2 class="text-2xl font-bold text-gray-900">Course Preview</h2>
+            </div>
+            <div class="bg-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-800">
+                <div class="aspect-w-16 aspect-h-9">
+                    {# Handle different URL formats #}
+                    {% if 'watch?v=' in course.video_link %}
+                        {# Full YouTube URL like: https://www.youtube.com/watch?v=XKHEtdqhLK8 #}
+                        <iframe 
+                            src="https://www.youtube.com/embed/{{ course.video_link.split('watch?v=')[1].split('&')[0] }}"
+                            class="w-full h-64 lg:h-96"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    {% elif 'youtu.be/' in course.video_link %}
+                        {# Short YouTube URL like: https://youtu.be/XKHEtdqhLK8 #}
+                        <iframe 
+                            src="https://www.youtube.com/embed/{{ course.video_link.split('youtu.be/')[1].split('?')[0] }}"
+                            class="w-full h-64 lg:h-96"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    {% else %}
+                        {# Assume it's just the YouTube ID like: XKHEtdqhLK8 #}
+                        <iframe 
+                            src="https://www.youtube.com/embed/{{ course.video_link }}"
+                            class="w-full h-64 lg:h-96"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-{% elif course.image %}
-<!-- Course Image - Clean -->
-<div class="mb-8">
-    <div class="rounded-xl overflow-hidden shadow-lg border border-gray-200">
-        <img src="{{ course.image }}" alt="{{ course.title }}" class="w-full h-64 lg:h-96 object-cover">
-    </div>
-</div>
-{% endif %}
-<!-- Course Description - Modern Card -->
-<div class="mb-8">
-    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
-            <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-            </svg>
-            About This Course
-        </h2>
-        <div class="text-gray-700 leading-relaxed text-lg bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            {{ course.description or course.short_introduction or "No description available." }}
+        {% elif course.image %}
+        <!-- Course Image - Clean -->
+        <div class="mb-8">
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                <img src="{{ course.image }}" alt="{{ course.title }}" class="w-full h-64 lg:h-96 object-cover">
+            </div>
         </div>
-    </div>
-</div>
-        <!-- Rest of your content remains the same -->
+        {% endif %}
+        
+        <!-- Course Description - Modern Card -->
+        <div class="mb-8">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                    <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    About This Course
+                </h2>
+                <div class="text-gray-700 leading-relaxed text-lg bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    {{ course.description or course.short_introduction or "No description available." }}
+                </div>
+            </div>
+        </div>
+
         <!-- Benefits of the Course Section -->
         <div class="mb-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Benefits of This Course</h2>
@@ -167,104 +172,394 @@
 
     <!-- Right Column - Course Info & Enrollment -->
     <div class="lg:col-span-1">
-    <!-- Enrollment Card -->
-    <div class="bg-white rounded-lg shadow-lg border border-gray-200 sticky top-8">
-        <div class="p-6">
-            {% if course.paid_course %}
-            <div class="text-center mb-4">
-                <span class="text-3xl font-bold text-gray-900">{{ course.course_price }} {{ course.currency }}</span>
-                {% if course.amount_usd %}
-                <p class="text-sm text-gray-600">Approx. ${{ course.amount_usd }} USD</p>
-                {% endif %}
-            </div>
-            {% else %}
-            <div class="text-center mb-4">
-                <span class="text-3xl font-bold text-green-600">Free</span>
-            </div>
-            {% endif %}
-
-            {% if is_enrolled %}
-            <!-- User is enrolled - Show Continue Learning -->
-            <button 
-                onclick="window.location.href='/lms/courses/{{ course.name }}'"
-                class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 mb-4">
-                Continue Learning
-            </button>
-            {% else %}
-            <!-- User is not enrolled - Show enrollment options -->
-            <button 
-                onclick="window.location.href='{% if course.paid_course %}/lms/billing/course/{{ course.name }}{% else %}/lms/courses/{{ course.name }}{% endif %}'"
-                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mb-4">
+        <!-- Enrollment Card -->
+        <div class="bg-white rounded-lg shadow-lg border border-gray-200 sticky top-8">
+            <div class="p-6">
                 {% if course.paid_course %}
-                Enroll Now - {{ course.course_price }} {{ course.currency }}
+                <div class="text-center mb-4">
+                    <span class="text-3xl font-bold text-gray-900">{{ course.course_price }} {{ course.currency }}</span>
+                    {% if course.amount_usd %}
+                    <p class="text-sm text-gray-600">Approx. ${{ course.amount_usd }} USD</p>
+                    {% endif %}
+                </div>
                 {% else %}
-                Start for Free
-                {% endif %}
-            </button>
-            {% endif %}
-
-            <div class="text-center text-sm text-gray-600 mb-4">
-                {% if course.enable_certification %}
-                <p>📜 Certificate included</p>
-                {% endif %}
-                <p>🕒 Lifetime access</p>
-            </div>
-
-            <!-- Course Features -->
-            <div class="space-y-3">
-                <div class="flex items-center text-sm text-gray-700">
-                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>{{ lessons_count }} lessons</span>
-                </div>
-                {% if chapters and chapters|length > 0 %}
-                <div class="flex items-center text-sm text-gray-700">
-                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>{{ chapters|length }} chapters</span>
+                <div class="text-center mb-4">
+                    <span class="text-3xl font-bold text-green-600">Free</span>
                 </div>
                 {% endif %}
-                {% if course.enable_certification %}
-                <div class="flex items-center text-sm text-gray-700">
-                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Certificate of completion</span>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
 
-    <!-- Instructors Section -->
-    {% if instructors and instructors|length > 0 %}
-    <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 class="text-lg font-bold text-gray-900 mb-4">Instructors</h3>
-        <div class="space-y-4">
-            {% for instructor in instructors %}
-            <div class="flex items-center">
-                {% if instructor.user_image %}
-                <img src="{{ instructor.user_image }}" alt="{{ instructor.full_name }}" class="w-12 h-12 rounded-full mr-3">
+                {% if is_enrolled %}
+                <!-- User is enrolled - Show Continue Learning -->
+                <button 
+                    onclick="window.location.href='/lms/courses/{{ course.name }}'"
+                    class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 mb-4">
+                    Continue Learning
+                </button>
                 {% else %}
-                <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
-                    <span class="text-gray-600 text-sm font-semibold">{{ instructor.full_name[0] if instructor.full_name else 'I' }}</span>
-                </div>
+                <!-- User is not enrolled - Show enrollment options -->
+                <button 
+                    onclick="window.location.href='{% if course.paid_course %}/lms/billing/course/{{ course.name }}{% else %}/lms/courses/{{ course.name }}{% endif %}'"
+                    class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mb-4">
+                    {% if course.paid_course %}
+                    Enroll Now - {{ course.course_price }} {{ course.currency }}
+                    {% else %}
+                    Start for Free
+                    {% endif %}
+                </button>
                 {% endif %}
+
+{% if is_enrolled %}
+<div class="mb-4">
+    <button id="generate-invoice-btn" class="w-full bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+        Generate Invoice
+    </button>
+    <div id="invoice-result" class="mt-3 text-center"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('generate-invoice-btn');
+    const enrollmentName = "{{ enrollment_name }}";
+    
+    if (!btn || !enrollmentName) {
+        console.log('Button or enrollment name not found');
+        return;
+    }
+
+    btn.addEventListener('click', function() {
+        generateInvoice(enrollmentName);
+    });
+});
+
+async function generateInvoice(enrollmentName) {
+    const btn = document.getElementById('generate-invoice-btn');
+    
+    // Show loading state
+    btn.disabled = true;
+    btn.textContent = 'Generating Invoice...';
+    btn.classList.add('opacity-50');
+
+    try {
+        const response = await fetch('/api/method/lms.www.course_detail.generate_course_invoice', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Frappe-CSRF-Token': '{{ frappe.session.csrf_token }}'
+            },
+            body: JSON.stringify({ enrollment_name: enrollmentName })
+        });
+
+        const data = await response.json();
+        console.log('Invoice response:', data);
+        
+        // Handle the response
+        if (data.message && data.message.success) {
+            if (data.message.invoice_data) {
+                showInvoice(data.message.invoice_data, data.message.message);
+            } else if (data.message.invoice_number) {  // Check for invoice_number first
+                showBasicInvoice(data.message.invoice_number);
+            } else if (data.message.invoice_name) {    // Fallback to invoice_name
+                showBasicInvoice(data.message.invoice_name);
+            } else {
+                showSuccess(data.message.message || "Invoice generated successfully!");
+            }
+        } else if (data.message && data.message.error) {
+            showError(data.message.error);
+        } else {
+            showError("Unexpected response from server");
+        }
+    } catch (error) {
+        console.error('Invoice generation error:', error);
+        showError("Network error: " + error.message);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Generate Invoice';
+        btn.classList.remove('opacity-50');
+    }
+}
+
+function showInvoice(invoiceData, message = "Invoice Generated!") {
+    const statusColors = {
+        'Paid': 'bg-green-100 text-green-800',
+        'Unpaid': 'bg-yellow-100 text-yellow-800',
+        'Overdue': 'bg-red-100 text-red-800',
+        'Cancelled': 'bg-gray-100 text-gray-800'
+    };
+    
+    const statusClass = statusColors[invoiceData.status] || 'bg-gray-100 text-gray-800';
+
+    const resultHTML = `
+        <div class="space-y-4 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200 shadow-sm">
+            <!-- Header -->
+            <div class="flex items-center justify-center">
+                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
                 <div>
-                    <h4 class="font-semibold text-gray-900">{{ instructor.full_name }}</h4>
-                    <p class="text-sm text-gray-600">{{ instructor.headline }}</p>
+                    <h3 class="text-green-800 font-bold text-xl">${message}</h3>
+                    <p class="text-green-600 text-sm">Your course invoice is ready</p>
                 </div>
             </div>
-            {% if instructor.bio %}
-            <p class="text-sm text-gray-700">{{ instructor.bio }}</p>
-            {% endif %}
-            {% endfor %}
+            
+            <!-- Invoice Details Card -->
+            <div class="bg-white rounded-lg border border-gray-200 p-4 space-y-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Invoice Number:</span>
+                            <span class="font-semibold">${invoiceData.number}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Invoice Date:</span>
+                            <span>${formatDate(invoiceData.date)}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Due Date:</span>
+                            <span>${formatDate(invoiceData.due_date)}</span>
+                        </div>
+                        ${invoiceData.payment_reference ? `
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Payment Ref:</span>
+                            <span class="text-blue-600">${invoiceData.payment_reference}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Customer:</span>
+                            <span>${invoiceData.billing_name || invoiceData.customer}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Course:</span>
+                            <span class="text-blue-600 font-medium">${invoiceData.course_title}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600 font-medium">Status:</span>
+                            <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusClass}">
+                                ${invoiceData.status}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Billing Details -->
+                ${(invoiceData.address || invoiceData.gstin || invoiceData.pan) ? `
+                <div class="border-t pt-3 mt-3">
+                    <h4 class="font-semibold text-gray-700 mb-2">Billing Details:</h4>
+                    <div class="text-sm text-gray-600 space-y-1">
+                        ${invoiceData.address ? `<div>${invoiceData.address}</div>` : ''}
+                        ${invoiceData.gstin ? `<div><strong>GSTIN:</strong> ${invoiceData.gstin}</div>` : ''}
+                        ${invoiceData.pan ? `<div><strong>PAN:</strong> ${invoiceData.pan}</div>` : ''}
+                    </div>
+                </div>
+                ` : ''}
+                
+                <!-- Amount Section -->
+                <div class="border-t pt-3 mt-3">
+                    ${invoiceData.tax_amount > 0 ? `
+                    <div class="space-y-1 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Course Fee:</span>
+                            <span>${invoiceData.currency} ${formatAmount(invoiceData.amount)}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tax:</span>
+                            <span>${invoiceData.currency} ${formatAmount(invoiceData.tax_amount)}</span>
+                        </div>
+                    </div>
+                    ` : ''}
+                    <div class="flex justify-between items-center text-lg font-bold mt-2 pt-2 border-t">
+                        <span class="text-gray-700">Total Amount:</span>
+                        <span class="text-green-600">
+                            ${invoiceData.currency} ${formatAmount(invoiceData.total_amount)}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="flex space-x-3">
+                <button onclick="printInvoice()" 
+                    class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                    </svg>
+                    Print Invoice
+                </button>
+                <button onclick="downloadInvoice('${invoiceData.number}')" 
+                    class="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Download PDF
+                </button>
+            </div>
+            
+            <p class="text-xs text-gray-500 text-center">
+                This invoice has been generated for your records. You can print or download it for your reference.
+            </p>
         </div>
+    `;
+    document.getElementById("invoice-result").innerHTML = resultHTML;
+}
+
+function showBasicInvoice(invoiceNumber) {
+    const resultHTML = `
+        <div class="space-y-3 p-4 bg-green-50 rounded-lg border border-green-200">
+            <div class="flex items-center justify-center">
+                <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-green-800 font-semibold text-lg">Invoice Generated!</span>
+            </div>
+            
+            <div class="bg-white rounded-lg p-4 border">
+                <p class="text-center text-gray-700">
+                    Invoice <strong>${invoiceNumber}</strong> has been successfully generated.
+                </p>
+            </div>
+        </div>
+    `;
+    document.getElementById("invoice-result").innerHTML = resultHTML;
+}
+
+function showSuccess(message) {
+    const resultHTML = `
+        <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+            <div class="flex items-center justify-center">
+                <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-green-800 font-semibold">${message}</span>
+            </div>
+        </div>
+    `;
+    document.getElementById("invoice-result").innerHTML = resultHTML;
+}
+
+function showError(message) {
+    const resultHTML = `
+        <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+            <div class="flex items-center justify-center">
+                <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-red-800 font-semibold">${message}</span>
+            </div>
+        </div>
+    `;
+    document.getElementById("invoice-result").innerHTML = resultHTML;
+}
+
+// Utility functions
+function formatDate(dateString) {
+    if (!dateString) return 'N/A';
+    return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+function formatAmount(amount) {
+    if (!amount) return '0.00';
+    return parseFloat(amount).toFixed(2);
+}
+
+function printInvoice() {
+    window.print();
+}
+
+function downloadInvoice(invoiceNumber) {
+    // You can implement PDF download here
+    // For now, just print
+    window.print();
+}
+</script>
+
+<style>
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #invoice-result,
+    #invoice-result * {
+        visibility: visible;
+    }
+    #invoice-result {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
+</style>
+{% endif %}
+                <div class="text-center text-sm text-gray-600 mb-4">
+                    {% if course.enable_certification %}
+                    <p>📜 Certificate included</p>
+                    {% endif %}
+                    <p>🕒 Lifetime access</p>
+                </div>
+
+                <!-- Course Features -->
+                <div class="space-y-3">
+                    <div class="flex items-center text-sm text-gray-700">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>{{ lessons_count }} lessons</span>
+                    </div>
+                    {% if chapters and chapters|length > 0 %}
+                    <div class="flex items-center text-sm text-gray-700">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>{{ chapters|length }} chapters</span>
+                    </div>
+                    {% endif %}
+                    {% if course.enable_certification %}
+                    <div class="flex items-center text-sm text-gray-700">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Certificate of completion</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructors Section -->
+        {% if instructors and instructors|length > 0 %}
+        <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Instructors</h3>
+            <div class="space-y-4">
+                {% for instructor in instructors %}
+                <div class="flex items-center">
+                    {% if instructor.user_image %}
+                    <img src="{{ instructor.user_image }}" alt="{{ instructor.full_name }}" class="w-12 h-12 rounded-full mr-3">
+                    {% else %}
+                    <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-gray-600 text-sm font-semibold">{{ instructor.full_name[0] if instructor.full_name else 'I' }}</span>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h4 class="font-semibold text-gray-900">{{ instructor.full_name }}</h4>
+                        <p class="text-sm text-gray-600">{{ instructor.headline }}</p>
+                    </div>
+                </div>
+                {% if instructor.bio %}
+                <p class="text-sm text-gray-700">{{ instructor.bio }}</p>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
-</div>
+
 
 {% endblock %}

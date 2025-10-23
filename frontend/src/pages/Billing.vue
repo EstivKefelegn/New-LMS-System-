@@ -342,6 +342,7 @@ const changeCurrency = (country) => {
 	orderSummary.reload()
 }
 
+
 const redirectTo = computed(() => {
 	if (props.type == 'course') {
 		return `/lms/courses/${props.name}`

@@ -33,10 +33,20 @@ def get_payment_link(
 	address = frappe._dict(address)
 	amount_with_gst = total_amount if total_amount != amount else 0
 
+	# Record the payment
 	payment = record_payment(
 		address, doctype, docname, amount, currency, amount_with_gst, payment_for_certificate
 	)
+
 	controller = get_controller(payment_gateway)
+
+	# # 👇 Append the course name dynamically to the redirect URL
+	# if "<course_name>" in redirect_to:
+	# 	redirect_to = redirect_to.replace("<course_name>", docname)
+	# elif redirect_to.endswith("/"):
+	# 	redirect_to = f"{redirect_to}{docname}"
+	# else:
+	# 	redirect_to = f"{redirect_to}/{docname}"
 
 	payment_details = {
 		"amount": total_amount,
@@ -51,6 +61,8 @@ def get_payment_link(
 		"redirect_to": redirect_to,
 		"payment": payment.name,
 	}
+
+	# If using Razorpay, create order first
 	if payment_gateway == "Razorpay":
 		order = controller.create_order(**payment_details)
 		payment_details.update({"order_id": order.get("id")})
